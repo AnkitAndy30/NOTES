@@ -1,0 +1,3243 @@
+***************************************************     Lecture 49      ******************************************************
+                                                        
+                                                        Javascript
+- Javascript is light weight, JIT [Just in Time] compiled programming language.
+
+-What is JIT?
+- There are 2 type of compiling techniques
+            a) JIT      [Just-in-Time]
+            b) AOT      [Ahead-of-Time]
+- JIT compiles logic in browser. [Code is loaded into browser and compiled in browser].
+- AOT compiles logic at app level. [Compilation happens in the application itself (Babel, V8)].
+
+-Javascript supporst various programming techniques and approaches
+    a) Functional Programming
+    b) Structural Programming
+    c) Imperative Programming
+    d) Object Oriented Programming etc
+
+- Javascript is not an OOP language, it supports only few features of OOP.
+- Javascript is used
+                a) Client Side          HTML
+                b) Server Side          Node.Just
+                c) Database             MongoDB
+                d) Animations           ActionScript, Flash, 3DS Max etc..
+                                        CAD
+
+Evolution of JavaScript
+=======================
+-The first browser was "Mosaic"
+                -GML, SGML              Presentation
+                -ECMA Script            Client Side
+-1990's Tim Berners Lee introduced HTML.
+-1994   Netscape Communications - Developed browser "Netscape Communicator"
+        Netscape Communicator uses:-
+            -HTML
+            -ECMA Script
+            Later ECMA Script had faced difficulty to handle HTML so,
+            -Netscape appointed "Brendan Eich" [CERN]
+            -The script he developed was first named "Mocha"
+            -Later it's Name Changed to "Live Script"
+            -Since No One was maintaining the "Live Script" so Netscape given the responsibility of maintenance to Sun Micro Systems
+            -Sun Micro Systems (had developed Java) so to advertise that they are now maintaining the "LIVE SCRIPT" Sun Micro Systems
+              renamed "LIVE SCRIPT" to "JAVASCRIPT".
+
+
+-1998 Microsoft released Win-98
+        -With Win-98 Internet Explorer was free browser so Everyone stopped using "Netscape browser"
+
+
+-2004   Netscape stopped it's browser, and JavaScript was given to ECMA to maintain.
+- ECMA Script = JavaScript = ES4 - ES20 [ECMA Script 2014- ECMA Script 2020]
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+                                            JavaScript with HTML
+                                                [Client Side]
+
+- JavaScript is used client side in order to reduce burden on server.
+- JavaScript can reduce burden on server by
+        -Handling Validations Client Side
+        -Handling Interactions Client Side
+        -DOM Manipulations
+                a) Adding Elements
+                b) Removing Elements
+                c) Rendering new Data into Elements
+                d) Update data in Elements etc.
+
+FAQ: What is the role of Javascript with HTML?
+ANs: Role of JavaScript with HTML is to do the "DOM Manipulations"
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+                                            Integrating JavaScript into Page
+                                            ================================
+1. Inline                           Fast but not reusable
+2. Embedded                         Reusable with in the Page
+3. External File                    Reusable across the different Pages
+
+Ex: Inline
+            <button onclick="window.print()"> Print </button>
+            -------------------------------------------------
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <title>Javascript-Inline</title>
+                </head>
+                <body>
+                    <h1>Click Button to Print Page</h1>
+                    <button onclick="window.print()">Print</button>
+                </body>
+                </html>
+
+
+
+Ex: Embedded
+
+            Syntax:-
+            <script type="text/javascript">
+                function name(){
+                    
+                }
+            </script>
+
+            <button onclick="name()">Insert your Text</button>
+            --------------------------------------------------
+
+            Example:-
+
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <title>Javascript-Inline</title>
+
+                <script type="text/javascript">
+                    function PrintPage(){
+                        window.print();
+                    }
+                </script>
+
+            </head>
+            <body>
+                <h1>Click Button to Print Page</h1>
+                <button onclick="PrintPage()">Print</button>
+            </body>
+            </html>
+
+
+
+
+
+Ex: External
+1. Create a new File printing.js
+        function PrintPage(){
+            window.print();
+        }
+
+2. Link to HTML page
+    <script src="printing.js"> </script>
+
+    <button onclick="PrintPage()">Print</button>
+
+Note:- Always use "Minified" script file in "Production".
+
+
+
+
+***************************************************     Lecture 50      ******************************************************
+
+How javascript refers HTML Elements?
+
+1. Javascript can refer HTML Elements by using DOM hierarchy.
+
+
+Example:-
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function bodyload(){
+            window.document.images[0].src = "../public/assets/Laptop.png";
+            window.document.forms[0].elements[1].value = "Register";
+            window.document.forms[1].elements[1].value = "Login";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <img src="" alt="" width="100" height="100" border="1">
+    <div>
+        <form action="">
+            <h2>Register</h2>
+            User Name   :   <input type="text"> <input type="button" value="">
+        </form>
+    </div>
+    <div>
+        <form action="">
+            <h2>LogIn</h2>
+            Email: <input type="email"> <input type="button">
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+- If you change the position of any element in page, then every time you have to update its position in code.
+- It is faster in randering.
+
+
+
+
+
+2. Javascript can refer elements by using "name".
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function bodyload(){
+            pic.src = "../public/assets/Mobile.png";
+            frmRegister.btnRegister.value = "Register";
+            frmLogin.btnLogin.value = "Login";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <img src="" alt="" width="100" height="100" border="1" name="pic">
+    <div>
+        <form action="" name="frmRegister">
+            <h2>Register</h2>
+            User Name   :   <input type="text" name="txtName"> <input type="button" value="" name="btnRegister">
+        </form>
+    </div>
+    <div>
+        <form action="" name="frmLogin">
+            <h2>LogIn</h2>
+            Email: <input type="email" name="txtEmail"> <input type="button" name="btnLogin">
+        </form>
+    </div>
+</body>
+</html>
+
+
+- You can access any element directly by using it's reference name.
+- You can't access child elements directly.
+- You have to refer both parent and child hierarchy.
+
+
+
+
+3. You can refer by using "ID"
+    document.getElementbyId()
+
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function bodyload(){
+            document.getElementById("pic").src = "../public/assets/earpods.png";
+            document.getElementById("btnRegister").value = "Register";
+            document.getElementById("btnLogin").value = "LogIn"; 
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <img src="" alt="" width="100" height="100" border="1" name="pic" id="pic">
+    <div>
+        <form action="" name="frmRegister">
+            <h2>Register</h2>
+            User Name   :   <input type="text" name="txtName"> <input id="btnRegister" type="button" value="" name="btnRegister">
+        </form>
+    </div>
+    <div>
+        <form action="" name="frmLogin">
+            <h2>LogIn</h2>
+            Email: <input type="email" name="txtEmail"> <input id="btnLogin" type="button" name="btnLogin">
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+- Every element can be configured with only one ID.
+- ID have conflict with CSS Reference.
+- ID is not required if you are accessing any direct document element.
+
+
+
+
+4. Javascript can refer any element by using CSS selectors.
+
+        document.querySelector()
+
+        querySelector() allows you to select by using CSS selectors (means typeselector, idselector, classselector, descendantselector).
+
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function bodyload(){
+            document.querySelector("#pic").src = "../public/assets/earpods.png";
+            document.querySelector(".btn-register").value = "Register";
+            document.querySelector(".btn-login").value = "LogIn";
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <img src="" alt="" width="100" height="100" border="1" name="pic" id="pic">
+    <div>
+        <form action="" name="frmRegister">
+            <h2>Register</h2>
+            User Name   :   <input type="text" name="txtName"> <input id="btnRegister" class="btn-register" type="button" value="" name="btnRegister">
+        </form>
+    </div>
+    <div>
+        <form action="" name="frmLogin">
+            <h2>LogIn</h2>
+            Email: <input type="email" name="txtEmail"> <input id="btnLogin" class="btn-login" type="button" name="btnLogin">
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+- Query Selector can apply effects only to the first element.
+- However it can hanlde data for multiple element
+- It can also handle styles for multiple elements
+
+Syntax:-
+
+            document.querySelector("h2")                    // type selector
+            document.querySelector("#pic")                  // id selector
+            document.querySelector(".pic")                  // class selector
+
+
+
+5. Javascript can refer all elements having common name
+
+        document.getElementsByName()
+
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function bodyload(){
+            result = document.getElementsByName("pay");
+            alert("Total Number of Payment Methods: " + result.length);
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+   <fieldset>
+    <legend>Payment Method</legend>
+    <input type="radio" name="pay"> Cash
+    <input type="radio" name="pay"> UPI
+    <input type="radio" name="pay"> Credit Card
+   </fieldset>
+</body>
+</html>
+
+
+
+
+6. Javascript can refer all elements having common class Name
+
+        document.getElementsByClassName()
+
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function bodyload(){
+            result = document.getElementsByClassName("form-check-input");           // In this do not use .form-check-input
+            alert("Total Number of Payment Methods: " + result.length);
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+   <fieldset>
+    <legend>Payment Method</legend>
+    <input type="radio" class="form-check-input" name="pay"> Cash
+    <input type="radio" class="form-check-input" name="pay"> UPI
+    <input type="radio" name="pay"> Credit Card
+   </fieldset>
+</body>
+</html>
+
+
+
+7. Javascript can refer all elements by using Tag Name.
+
+            document.getElementByTagName()
+
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function bodyload(){
+            result = document.getElementsByTagName("h2");
+            alert("Total Number of Headings: " + result.length);
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <h2>Register</h2>
+   <fieldset>
+    <legend>Payment Method</legend>
+    <input type="radio" class="form-check-input" name="pay"> Cash
+    <input type="radio" class="form-check-input" name="pay"> UPI
+    <input type="radio" name="pay"> Credit Card
+   </fieldset>
+   <h2>Login</h2>
+</body>
+</html>
+
+
+
+
+#######################################  Javascript Output Techniques  ####################################################
+
+- alert()       [It is for mandatory confirmation not optional if the action is executed then we can't do anything].
+- confirm()     [Same like alert but gives option to cancel or press ok]
+- console.log(), console.warn(), console.success(), console.error(), console.debug(), console.info() etc...     [These are used by developers for testing purpose].
+- innerText
+- innerHTML
+- outerHTML
+- dcument.write()   [It displays output on a '''new screen''' not new page].
+
+
+Example:- difference between "alert()" & "confirm()"
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function DeleteClick(){
+            if(confirm("Are you sure want to delete?")==true){
+                alert("Record Deleted");
+            } else{
+                alert("You Cancelled..");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Click Delete Button to remove records</h2>
+    <button onclick="DeleteClick()">Delete</button>
+</body>
+</html>
+
+
+
+
+
+Example:- Difference between confirm() & document.write()
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function DeleteClick(){
+            if(confirm("Are you sure want to delete?")==true){
+                document.write("Record Deleted");
+            } else{
+                alert("You Cancelled..");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Click Delete Button to remove records</h2>
+    <button onclick="DeleteClick()">Delete</button>
+</body>
+</html>
+
+
+
+
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function DeleteClick(){
+            if(confirm("Are you sure want to delete?")==true){
+                document.querySelector("h1").innerText="Record Deleted";        //Remember innerText is used for containers like paragraph, div, heading etc. and also it will not allow any formatting or markup.//
+            } else{
+                alert("You Cancelled..");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Click Delete Button to remove records</h2>
+    <button onclick="DeleteClick()">Delete</button>
+    <h1 align="center"></h1>
+</body>
+</html>
+
+
+
+Example same as above but here we are writing innerHTML instead of innerText
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function DeleteClick(){
+            if(confirm("Are you sure want to delete?")==true){
+-------->       document.querySelector("h1").innerHTML="<font color='red'> Record Deleted </font>";
+            } else{
+                alert("You Cancelled..");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Click Delete Button to remove records</h2>
+    <button onclick="DeleteClick()">Delete</button>
+    <h1 align="center"></h1>
+</body>
+</html>
+
+
+Example same as above but here we are writing outerHTML instead of innerHTML
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript HTML reference</title>
+    <script>
+        function DeleteClick(){
+            if(confirm("Are you sure want to delete?")==true){
+                document.querySelector("h1").outerHTML="<p>Deleted Successfully.</p>";
+            } else{
+                alert("You Cancelled..");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Click Delete Button to remove records</h2>
+    <button onclick="DeleteClick()">Delete</button>
+    <h1 align="center"></h1>
+</body>
+</html>
+
+
+
+***************************************************     Lecture 50      ******************************************************
+
+JavaScript Input Techniques
+===========================
+
+- prompt()
+- form input elements
+
+                                                prompt()
+
+- It is like alert with input
+
+Syntax:
+                prompt("Your Message", "Default Value");
+
+
+- Prompt returns
+                            null            on cancel
+                            ""[empty]       on ok without value
+                            value           on ok with value
+
+
+
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Javascript</title>
+    <script>
+        function CreateClick(){
+            foldername = prompt("Enter Folder Name", "New_Folder");
+            if(foldername==null){
+                document.write("You canceled...");
+            }
+            else if(foldername==""){
+                document.write("Please provide folder name...");
+            }
+            else{
+                document.querySelector("p").innerHTML="Folder Created: " + foldername + "<br>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="CreateClick()">Create Folder</button>
+    <p></p>
+</body>
+</html>
+
+
+
+                                            Form Input Elements
+                                            ===================
+
+- You can use form input elements like 
+    textbox, password, number, email, radio, checkbox, listbox, dropdown etc.
+
+- Every form element must have a reference ID.
+
+        <input type="text" id="txtName">
+        <select id="lstCities">
+        <input type="checkbox" id="optStock">
+
+- You can access element and use its properties
+
+        document.getElementById("txtName").value;
+        document.getElementById("lstCities").value;
+        document.getElementById("optStock").checked==true/false
+
+
+FAQ: What is strict mode of JavaScript?
+Ans:- Strict mode for JavaScript allows to reduce code in-consistency.
+      So that developers have to follow coding standards.
+
+    <script>
+        "use strict"
+        x=10;                               // invalid - x is not defined
+        document.write("x=" + x);
+    </script>
+
+
+    <script>
+        "use strict"
+        var x;
+        x=10;                               // valid
+        document.write("x=" + x);
+    </script>
+
+WEBSITE:        PMD Code Analyzer
+                ESLint
+Example:-
+
+<script>
+    "use strict";       //since we are using strict mode of javascript we have to declare the variable without declaring it if we use it it will throw error.
+    x=10;
+    document.write("x=" + x);
+</script>
+
+<script>
+    "use strict";
+    var x;
+    x = 10;
+    document.write("x=" + x);
+</script>
+
+
+FAQ: How to write JavaScript for Legacy Browser? [Old Browser]
+Ans:- By enclosing the code in "HTML Comments"
+
+            2**3 = 8
+            Math.pow(2,3) = 8
+
+Syntax:-
+<script>
+    <!--
+        "use strict";
+        var x;
+        x = 10;
+        document.write("x=" + x);
+    -->
+</script>
+
+
+FAQ: How to add JavaScript Comments?
+Ans:-       
+            //              single line Comment
+            /* */           multi line comment
+            ///             XML comment
+            <!-- -->        HTML comments
+
+
+
+
+
+
+
+#####################################   JavaScript Language Basics  ########################################################
+
+- Variables
+- Data Types
+- Operators
+- Statements
+- Functions
+
+
+
+-Variables
+    1) Variables are storage locations in memory where you can store a value and use it as a part of any expression.
+    2) JavaScript allows to use variable directly if it is not in strict mode.
+
+    Example:-
+    
+    // Not in "strict mode"
+
+    <script>
+        username = prompt("Enter your name");
+        document.write("Hello! " + username);
+        document.write("How are you today " + username);
+    </script>
+
+    3) In strict mode variable configuration comprises of 3 phases
+            a) Declaration
+            b) Assignment
+            c) Initialization
+
+                - Declaring is defining scope and name for variable;
+                        
+                        Example:-
+                                        var username;
+                
+                - Assigning is rendering a value into variable after declaring.
+
+                        Example:-
+                                        username="john";
+                
+                - Initialization is rendering a value into variable while declaring.
+
+                        Example:-
+                                        var username = "john";
+                
+
+Note:- Declaring or Initialization of variable is mandatory if JavaScript is in strict mode.
+
+- Variable in JavaScript can be declared by using
+        a) var 
+        b) let
+        c) const
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        - var: 
+                - it defines function scope variable.
+                - You can declare in any block of a function and access from any other block in same function.
+
+            Syntax:-
+                    <script>
+                        function f1(){
+                            var x;
+                            x=10;
+                            if(x==10){
+                                var y = 20;      // declaring variable "y" in one block
+                            }
+                            document.write("x= " + x + "<br>" + "y= " + y); // and using it in another block in same function this tells that var defines function scope variable.
+                        }
+                        f1();
+                    </script>
+                
+
+
+                - var allows declaring, assigning and Initialization.
+                - var allows shadowing.
+
+                FAQ: What is Shadowing?
+                Ans: It is the process of re-declaring same name identifier within the scope.
+
+
+                - var allows hoisting.
+                FAQ: What is hoisting?
+                Ans: It is a compiling techinique, where compiler can find declaration of variable before using it. Hence you
+                     can use a variable before declaring.
+
+                    Example:
+                            <script>
+                                "use strict";
+                                function f1(){
+                                    x = 10;
+                                    document.write("X= " + x);
+                                    var x;                          //hoisting.
+                                }
+                            </script>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        - let:
+                - It is used to define block scope variable.
+                - It is accessible only in the block where it is declared or to its inner blocks.
+                - It allows declaring, assigning and Initialization
+                - It will not allow shadowing (for "let" and as well as for "var" for both of them shadowing is not allowed).
+                - It will not allow hoisting.
+
+
+                Example:- 
+                            <script>
+                                "use strict";
+                                function f1(){
+                                    x = 10;
+                                    if(x==10){
+                                        let y = 20;
+                                        document.write("x= " + x + "<br>" + "y= " + y);     // y is accessible here.
+                                    }
+                                    document.write("x= " + x + "<br>" + "y= " + y);         // y is not accessible here since let only gives block level permission.
+                                }
+                                f1();
+                            </script>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        - const:
+                    - It is used to define block scope variable.
+                    - It will allow only Initialization
+                    - No declaring.
+                    - No assigning.
+                    - No shadowing.
+                    - No hoisting.
+                    - Remember "const" does not mean that value cannot be Changed "const" means value cannot be assigned.
+                    - To change value of "const" this program is used 
+
+                            const username = prompt("Enter name");
+                            document.write("Hello! " + username);
+
+                    - Read only means the value cannot be changed and "const" is not read only.
+
+                    FAQ: Why we need const?
+                    Ans: const is required to initialize memory.
+                         At the time of loading application or component memory is initialized with some default value.
+
+                    Note: If initialization is missing then by default value will be "undefined".
+
+                            - var x;
+                              document.write("x=" + x);     // x = undefined
+
+                            - const x;                      // invalid
+                              x = 10;                       // invalid
+
+                            - const x = 10;                 // valid
+
+
+                    FAQ: Can const change its value?
+                    Ans: Dynamically yes.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+=>  Global Scope for Variable.
+    - You can declare a variable in module scope. So that it is global and accessible to all functions in module.
+
+    Example:-
+                <script>
+                    var x = 10;                 // module scope. & (<script> <script/> This is a module).  
+                    function f1(){
+                        document.write("x in function-1 : " + x + "<br>");
+                    }
+                    function f2(){
+                        document.write("x in function-2 : " + x);
+                    }
+                    f1();
+                    f2();
+                </script>
+
+    FAQ: Can we declare a global variable inside a funciton.
+    Ans: Yes, By using browser "window" object.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variable Naming:
+- Variable name must start with alphabet or underscore
+
+                var username;
+                var _username;
+                var 2021Sales;                  //invalid
+                var Sales2021;                  //valid
+                var Sales 2021;                 //invalid
+                var Sales.2021;                 //invalid
+                var Sales$2021;                 //invalid
+                var Sales_2021;                 //valid
+
+- The special character "_" is used to indicate that variable not implemented. It requires further implementation.
+- Variable name cannot exceed 255 characters.
+- Don't use language keyword for variable name.
+
+            var class = "UI";       //invalid
+            var object = "";        //invalid
+
+- Always variable must speak what it is.
+
+            var emp = new Employee();            // not good.
+            var prod = new Product();            // not good
+
+
+            var employee = new Employee();                          // good.
+            var product = new Product();                            // good.
+            var temporaryEmployee = new TemporaryEmployee();        // good.
+
+
+
+
+
+=>=>=>=>                              Data Types
+                                    ==========
+- It defines data structure.
+- Data type determines size and type of data.
+- Data types are cassified into two types.
+
+                1) Primitive
+                2) Non-Primitive 
+
+Primitive Data Types
+====================
+- It is immutable type [meaning it's value range cannot change but value can change].
+- Their structure will not change.
+- They have fixed range for value.
+- Value range can't change.
+- They use memory stack.
+- Stack uses "LIFO" [Last-In-First-Out].
+- Javascript Primitive Types are:
+
+                a) number
+                b) string
+                c) boolean
+                d) null
+                e) undefined
+
+Note:- Javascript is not strongly typed, It is implicitly typed.
+
+            var x = 10;         // x is number
+            x = "John";         // x is string.
+
+
+
+Number Types
+============
+- JavaScript number type refers to 
+        signed integer                          -10
+        unsigned integer                        10
+        floating position                       24.53
+        double                                  345.45, 45.563
+        decimal                                 4560.55, 45.5695 [29 decimal]
+        exponent                                2e3 [2 x 10 3] = 2000
+        binary                                  0b1010
+        octa                                    0o742
+        hexa                                    000fd
+
+
+- Javascript uses "isNaN()" method to verify the number type [NaN = Not a Number]
+Syntax:
+            <script>
+                var age = prompt("Enter Age");
+                if(isNaN(Age)){
+                    document.write("Please enter a numeric value");
+                }
+                document.write("Age= " + Age);
+            </script>
+
+- JavaScript cannot identify numeric value in string format, you have to explicitly convert into number by using following method.
+
+                    a) parseInt()
+                    b) parseFloat()
+
+
+Syntax:-
+                var age = "20";
+                document.write(age+1)               //201 (because it is concatinating).
+                document.write(parseInt(age)+1);    //21
+
+
+
+Example:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script>
+        function SubmitClick(){
+            var age = document.getElementById("lstAge");
+            document.write("You will be " + (parseInt(age)+1) + "next year");
+        }
+    </script>
+</head>
+<body>
+
+    <dl>
+        <dt>Select Age</dt>
+        <dd>
+            <select name="" id="lstAge">
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+            </select>
+        </dd>
+        <button onclick="SubmitClick()"></button>
+    </dl>
+    
+</body>
+</html>
+
+
+                                    var a = "10AB";
+                                    var b = 20;
+                                    var c = parseInt(a)+b;      //30
+
+                                    if a = "AB10";      // parseInt(a) is invalid;
+                                    if a = "10AB20";    // parseInt(a) = 10
+
+
+
+
+
+
+=>=>=>=>=>              STRING TYPE
+                        ===========
+- String is a literal with group of chars enclosed in
+            a) Single Quote             ''
+            b) Double Quote             ""
+            c) Back Tick                ``
+
+- Single and Double quote are used to configure inner and outer string combination.
+
+            var link = "<a href='home.html'>Home</a>";
+
+- Back Tick allows a string with embedded expression "${}".
+                
+                ${}    =>       Data Binding Expression.
+
+Example:-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script>
+        function SubmitClick(){
+            var username = prompt("Enter your name");
+            var age = document.getElementById("lstAge");
+            var msg1 = "Hello!" + " " + username + " " + "you will be" + " " + (parseInt(age)+1) + " " + "next year.<br>";
+            var msg2 = `Hello! ${username} you will be ${parseInt(age)+1} next year.`;
+            document.write(msg1);
+            document.write(msg2);
+        }
+    </script>
+</head>
+<body>
+
+    <dl>
+        <dt>Select Age</dt>
+        <dd>
+            <select name="" id="lstAge">
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+            </select>
+        </dd>
+        <button onclick="SubmitClick()"></button>
+    </dl>
+    
+</body>
+</html>
+
+
+
+Escape Sequence issues:
+- Special chars in a string can escape printing.
+- You have to print the non-printable chars by using "\".
+
+                \n                      new line in console
+                <br>                    new line in HTML
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+###############################################       Lecture 54      ##########################################################
+
+String Handling in JavaScript
+=============================
+
+JavaScript provides a set of method and properties to format and manipulate string.
+
+- String Formatting Methods:-
+        - bold()
+        - italic()
+        - sup()
+        - sub()
+        - fontcolor()               fontcolor('colorname')
+        - fontsize()                fontsize('4')       // In HTML fontsize we can give upto 7 levels
+        - toUpperCase()
+        - toLowerCase()
+
+
+String Property:
+- length    : returns the total number of JavaScript.
+
+Syntax:
+            var msg = "Welcome to JavaScript";
+            msg.bold().italics.fontcolor('green');
+            msg.toUpperCase();
+
+
+Example:
+
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <title>Javascript String Handling</title>
+                    <script>
+                        function VerifyUser(){
+                            var username = document.getElementById("txtName").value;
+                            var msg = document.getElementById("msg");
+                            if(username.length>=4 && username.length<=10){
+                                msg.innerHTML = "User Name Verified".bold().fontcolor('green').italics();
+                            }else{
+                                msg.innerHTML = "Invalid - User Name 4 to 10 chars Only".italics().fontcolor('red');
+                            }
+                        }
+
+                        function ChangeCase(){
+                            var username = document.getElementById("txtName").value;
+                            document.getElementById("txtName") = username.toUpperCase();
+                        }
+                    </script>
+                </head>
+                <body>
+                    <h2>Register User</h2>
+                    <dl>
+                        <dt>User Name</dt>
+                        <dd><input type="text" id="txtName" placeholder="Block Letters Only" onkeyup="VerifyUser()"></dd>
+                        <dd id="msg"></dd>
+                    </dl>
+                    <button onclick="VerifyUser()">Submit</button>
+                </body>
+                </html>
+
+
+
+Events:
+- onkeyup               : actions to perform when key is released.
+- onblur                : actions to perform when control is blurred.
+                          [lost focus].
+- onclick               : actions to perform when clicked.
+- onload                : actions to perform on page or image load.
+
+
+
+
+Example: Formatting a String Dynamically using string functions
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Color Demo</title>
+    <script>
+        function ChangeColor(){     //applying to string.
+            alert(document.querySelector("select").value);
+            document.querySelector("p").innerHTML = "Welcome to Javascript".fontcolor(document.querySelector("select").value);  //Remember on any element we cannot directly apply any color change method we have to apply on the inner string of the element.
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Choose Effects</legend>
+        <dl>
+            <dt>Font Color</dt>
+            <dd>
+                <select name="" id="" onchange="ChangeColor()">
+                    <option value="">Red</option>
+                    <option value="">Green</option>
+                    <option value="">White</option>
+                    <option value="">Yellow</option>
+                </select>
+            </dd>
+        </dl>
+    </fieldset>
+    <p></p>
+</body>
+</html>
+
+
+
+
+
+Example: Formatting string by using styles
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Color Demo</title>
+    <script>
+       function ChangeColor(){
+        document.querySelector("p").style = document.querySelector("select").value; //applying to element.
+       }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Choose Effects</legend>
+        <dl>
+            <dt>Font Color</dt>
+            <dd>
+                <select name="" id="" onchange="ChangeColor()">
+                    <option value="">Red</option>
+                    <option value="">Green</option>
+                    <option value="">White</option>
+                    <option value="">Yellow</option>
+                </select>
+            </dd>
+        </dl>
+    </fieldset>
+    <p></p>
+</body>
+</html>
+
+
+
+
+Note:- Formatting functions are not for an element it is for String, if we want to format string inside element then we have to
+       use style.
+
+
+
+
+
+Example: Dynamically applying CSS Class.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dynamically applying CSS class</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <script>
+        function ChangeTheme(){
+            var themeCheckBox = document.getElementById("theme");
+            var formContainer = document.getElementById("formContainer");
+            if(themeCheckBox.checked){
+                formContainer.className = "dark-theme";
+                document.querySelector("button").className = "btn btn-dark w-100";
+            }else{
+                formContainer.className = "light-theme";
+                document.querySelector("button").className = "btn btn-primary w-100";
+            }
+        }
+    </script>
+
+    <style>
+        .form{
+            border: 2px solid;
+            padding: 20px;
+            width: 200px;
+            margin-top: 250px;
+        }
+
+        .dark-theme{
+            border: 2px solid;
+            padding: 20px;
+            width: 200px;
+            margin-top: 250px;
+            background-color: black;
+            color: white;
+        }
+
+        .white-theme{
+            border: 2px solid;
+            padding: 20px;
+            width: 200px;
+            margin-top: 250px;
+            background-color: white;
+            color: black;
+        }
+
+    </style>
+</head>
+<body class="container-fluid">
+    <div class="form" id="formContainer">
+
+        <div>
+            <input type="checkbox" id="theme" onchange="ChangeTheme()" class="form-check-input"> Dark Theme
+        </div>
+
+        <h2>Register User</h2>
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text"></dd>
+            <dt>Password</dt>
+            <dd><input type="password"></dd>
+            <dt>Email</dt>
+            <dd><input type="email"></dd>
+        </dl>
+        <button class="btn w-100">LogIn</button>
+    </div>
+</body>
+</html>
+
+
+Note:- You can define styles and classes Dynamically to any element .
+
+            document.querySelector("p").style.color = "green";
+            document.querySelector("button").className = "btn btn-primary w-100";
+
+
+
+
+
+                                String Manipulations
+                                ====================
+- chatAt()                          : It returns the character at specified index.
+- charCodeAt()                      : It returns the character ASCII code present at specified index. 
+- slice()                           : It can extract chars between specified index.
+- substr()                          : It can return the specified number of chars from given index.
+- substring()                       : It can return the chars from specific index in any direction.     
+
+
+Example:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>String Manipulations</title>
+    <script>
+        function ChangeCase(){
+            var username = document.getElementById("txtName").value;
+            var firstChar = username.charAt(0);
+            var restChars = username.substring(1);          // reading from 1st index to last index
+            var sentence = firstChar.toUpperCase() + restChars.toLowerCase();
+            document.getElementById("txtName").value = sentence;
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Test</legend>
+        <div>
+            <input type="text" id="txtName" onblur="ChangeCase()">
+        </div>
+        <div id="msg">
+            
+        </div>
+    </fieldset>
+</body>
+</html>
+
+
+
+
+FAQ: What is charCodeAt()?
+Ans: charAt() returns char at specified index.
+     charCodeAt() returns its character code as per UTF standards.
+            A=65, Z=90
+
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>String Manipulations</title>
+    <script>
+        function VerifyName(){
+            var username = document.getElementById("txtName").value;
+            if(username.charCodeAt(0)>=65 && username.charCodeAt(0)<=90){
+                document.querySelector("p").innerHTML = "";
+            }else{
+                document.querySelector("p").innerHTML = "Name must start with uppercase letter".fontcolor('red');
+            }
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>User Name</legend>
+        <div>
+            <input type="text" size="40" placeholder="Name must start with uppercase letter" id="txtName" onkeyup="VerifyName()">
+            <p></p>
+        </div>
+    </fieldset>
+</body>
+</html>
+
+
+FAQ: What is the difference between slice(), substr() & substring()?
+Ans:
+    - slice():  It can read the chars between specified start and end index.
+                If end is not defined, then it will read upto end of string.
+                End Index must be greater than start index.
+
+                string.slice(0,7)       // 0 to 7
+                string.slice(7)         // 7 to end
+                string.slice(7,0)       // invalid
+
+                Syntax:     slice(startIndex, endIndex);
+
+
+
+    - substr:   It can read specified number of chars from given index number.
+
+                Syntax:     substr(startIndex, countOfChars);
+
+                            string.substr(7, 3);    // from 7 index it will read 3 chars.
+
+
+    - substring():      It can read from specified index to any direction.
+
+                Syntax:     substring(startIndex, endIndex);
+
+                Note: endIndex can be less than start index.
+
+                Example:
+                        string.substring(0,7);  // it will read form 0 to 7
+                        string.substring(7);    // it will read from 7 till last index.
+                        string.substring(7,0);  // it will read from 7 to 0 index.
+
+
+
+
+
+
+IndexOf() & lastIndexOf()
+========================
+- These are the functions, which can find any character in a string and return its index position.
+- If character not found then it return -1
+- lastIndexOf() will return the last occurance index.
+
+                Welcome                 - indexOf("e")              // 1
+                Welcome                 - lastIndexOf("e")          // 6
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <script>
+        function VerifyEmail(){
+            var email = document.getElementById("txtEmail").value;
+            var msg = document.querySelector("h2");
+            var atPos = email.indexOf("@");
+            if(atPos<2){
+                msg.innerHTML = "Invalid Email";
+            }else{
+                msg.innerHTML = "Email Verified";
+            }
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Your Email</legend>
+        <input type="text" id="txtEmail"> <button onclick="VerifyEmail()">Submit</button>
+    </fieldset>
+    <h2></h2>
+</body>
+</html>
+
+
+
+startsWith() & endsWith()
+=========================
+- These are the functions used to verify the starting and ending chars in a string.
+- These functions return boolean true when string is starting or ending with specified characters.
+
+Syntax:
+                string.startsWith(chars);
+                string.endsWith(chars);
+
+
+match(): It is used to verify and compare given string with any regular expression. It returns true if string format is as per
+         regular expression. It returns true if string format is as per regular expression.
+
+         In JavaScript regular expression is enclosed in " / / "
+
+Syntax:
+            var regExp = /pattern/;
+            var string = "";
+            if(string.match(regExp)){
+
+            }
+
+
+Example:-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Match Demo</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function VerifyPassword(){
+            var password = document.getElementById("txtPwd");
+            var regExp = /(?=.*[A-Z])\w{4,15})/;
+            var msg = document.getElementById("msg");
+
+            var grade = document.getElementById("grade");
+
+            function ShowGrade(min, max, value, low, high){
+                grade.min = min;
+                grade.max = max;
+                grade.value = value;
+                grade.low = low;
+                grade.high = high;
+            }
+
+            if(password==""){
+                msg.innerHTML = "Password Required";
+                msg.className = "text-danger";
+            }else{
+                if(password.match(regExp)){
+                    msg.innerHTML = "Strong Password";
+                    msg.className = "text-success";
+                    ShowGrade(1,100,100,0,0);           // for strong password difference of low and high is "zero"
+                }else{
+                    if(password.length<4){
+                        msg.innerHTML = "Poor Password";
+                        msg.className = "text-danger";
+                        ShowGrade(1,100,100,60,80);     // for poor password difference of low and high is more than the "strong password".
+                    }else{
+                        msg.innerHTML = "Weak Password";
+                        msg.className = "text-warning";
+                        ShowGrade(1,100,100,40,80)      // for weak password difference of low and high is more than the "poor password".
+                    }
+                }
+            }
+        }
+
+        function VerifyMobile(){
+            var mobile = document.getElementById("txtMobile").value;
+            var mobileExpression = /\+91\d{10}/;
+            var mobileError = document.getElementById("mobileError");
+            if(mobile.match(mobileExpression)){
+                mobileError.innerHTML = "";
+            }else{
+                mobileError.innerHTML = "Invalid Mobile";
+                mobileError.className = "text-danger";
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid">
+    <h2>Verify Password</h2>
+    <input type="password" onkeyup="VerifyPassword()" id="txtPwd" class="form-control">
+    <div id="msg"></div>
+    <div>
+        <meter value="" id="grade"></meter>
+    </div>
+    <h2>Verify Mobile</h2>
+    <input type="text" onkeyup="VerifyMobile()" id="txtMobile" class="form-control">
+    <div id="mobileError"></div>
+</body>
+</html>
+
+
+
+
+
+trim() & split():
+=================
+- trim() is used to remove the leading spaces in a string.
+- split() is used to split the string at specified delimiter and return an array.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+------------------------------------------      Lecture 56      -------------------------------------------------------------
+
+                                                Boolean Type
+                                                ============
+
+- Boolean types are used in decision making.
+- Boolean type in JavaScript can handle 2 values.
+        a) true
+        b) false
+
+- Boolean conditions in JavaScript can use 1 for true and 0 for false.
+                true + true     =       2
+                true + flase    =       1
+
+Example:
+<script>
+    var name = "Samsung TV";
+    var stock = true;
+    var status;
+    if(stock==1){
+        status="Available";
+    }else{
+        status = "Out of Stock";
+    }
+    document.write(`Name = ${name} <br> Stock = ${status}`);
+</script>
+
+
+
+
+
+                                                Undefined Type
+                                                ==============
+- It specifies that value is not supplied into a reference.
+- Undefined type is verified by using "undefined" keyword.
+- It indicates that value is not defined into given reference.
+
+Example:
+<script>
+    var name = "Samsung TV";
+    var price;                      // it is not an error javascript will provide undefined 
+    if(price==undefined){
+        document.write(`Name = ${name}`);
+    }else{
+        document.write(`Name=${name}<br>Price=${price}`);
+    }
+</script>
+
+
+FAQ: What is the difference between undefined and not-defined?
+Ans:
+                    undefined           : reference is there but value not defined.
+                    not-defined         : reference is not defined (meaning reference is not present and you are trying to use it).
+
+
+Example:
+<script>
+    var x;
+    document.write(`x=${x}<br>y=${y}`);         // y is not-defined here in code
+</script>
+
+        x = undefined
+        y = not defined.
+
+
+
+
+===>                                            NULL TYPE
+- It is an exception type.
+- Exception occurs at run time.
+- Null indicates that value is not supplied during run time.
+- You can verify null type by using "null" keyword.
+
+
+Example:
+
+<script>
+    var username = prompt("Enter Name");
+    if(username==null){
+        document.write("You cancelled");
+    }
+    else if(username==""){
+        document.write("Name cannot be empty");
+    }
+    else{
+        document.write(`Hello! ${username}`);
+    }
+</script>
+
+
+
+Summary: Primitive Types
+-number                     : numeric values
+-string                     : literals
+-boolean                    : true/false
+-null                       : no value at run time
+-undefined                  : no value at compile time.
+
+
+
+------------------------------------------ JAVASCRIPT NON-PRIMITIVE TYPE ----------------------------------------------------
+-They are mutable types.
+-They can change the structure according to state and situation.
+-There is no fixed range or value.
+-Value range varies according to memory available.
+-They are stored in heap memory.
+-JavaScript non-primitive types are:
+
+            a) Array
+            b) Object
+            c) Map
+
+
+
+                                        Array Type
+                                        ==========
+-Array means organizing in order and accessing in random order.
+-Stack means organizing in order and accessing the last one first. [LIFO].
+-Queue means organizing in order and accessing the first one first. [FIFO].
+
+
+What is the purpose of Array?
+-Array is used in computer programming to reduce overhead and complexity.
+-Arrays will reduce overhead by storing values in sequential order.
+-Arrays will reduce compleixty by stroring multiple values under one name.
+-Arrays can handle any type of value.
+-Array size can be changed dynamically.
+
+
+Note: Few technologies can't allocate various types of memory in sequential order hence they restrict array to same type of values
+and size can't be changed dynamically. [C, C++, Java, .NET Languages...].
+
+
+Configure Array:
+================
+1. Declaring Array.
+2. Initialization of Memory for Array.
+
+
+Declaring Array.
+================
+                    var arrayName;
+                    var products;
+                    var categories;
+
+Initialization of Memory
+========================
+                    var arrayName = [];
+                    var arrayName = Array();
+                    var products = [];
+                    var categories = new Array();
+
+
+Note: You can also assign memory for array.
+
+                    var products;
+                    products = [];
+
+                    var categories;
+                    categories = new Array();
+
+
+FAQ: What is the difference between Array "[]" meta character and "Array()" constructor.
+Ans: Array() constructor can define size for array. However size can be changed dynamically.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    Lecture 57  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Storing Values into Array:
+=========================
+-Values are stored and accessed from an array by using property.
+-Property maps to Index in memory.
+
+Syntax:
+                let values = [];
+                let values[0] = 10;             //valid
+                let values["1"] = 20;           //valid
+
+                document.write(values["0"]);
+                document.write(values[1]);
+
+Syntax: Initialization of Values
+
+            let values = [10, 20, 30];
+            let values = new Array(10,20,30);
+
+
+
+
+Reading Values from Array:
+- You can use the reference of Property.
+            values[0]
+            values["1"]
+- By using Array Methods
+            toString()  :reads and returns all array elements in a string format. [,]
+            join()      :reads and returns all elements with custom delimiter.
+            slice()     :reads elements between specified index.
+            filter()    :returns all elements that match given condition.
+            find()      :returns only the first element that match given condition.
+            map()       :It is an iterator for presenting elements.
+
+Ex1:
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.toString());
+</script>
+
+Ex2:
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.join("-->"));
+</script>
+
+
+Ex3:
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.slice(1,3));
+</script>
+
+
+Ex4:
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    function GetData(value){
+        return value > 50000;
+    }
+    var result = sales.filter(GetData);
+    document.write(result);
+</script>
+
+or
+
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.filter(function(value){return value<50000}));
+</script>
+
+
+Ex5:
+<script>
+    let sales = [34000, 32000, 60000, 42500, 52000];
+    document.write(sales.find(function(value){return value>50000}));
+</script>
+
+
+Ex6: Map:   It is an Iterator - Software Design pattern
+            It can read elements from a collection in sequential order.
+            It doesn't require any condition, initialization and counter.
+
+<script>
+    let sales  = [34000, 32000, 60000, 42500, 52000, 56000];
+    sales.map(function(value){
+        document.write(`<li>${value}</li>`);
+    })
+</script>
+
+
+- Reading values by using loops and external iterators
+
+                for()           ]
+                while()         ] loops
+                do while()      ]
+                for..in         // iterator of properties
+                for..of         // iterator of values
+
+Syntax: Loop
+            for(var i=0; i<array.length; i++){
+                document.write(array[i]);
+            }
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Dynamically Creating and Adding DOM elements using Array    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                  ========================================================
+
+
+1. You can create any HTML element with JavaScript by using:
+
+                document.createElement("elementName");
+                document.createElement("h2");
+                document.createElement("img");
+
+
+2. You can add element dynamically into page by using the method:
+
+                appendChild()
+                append()
+                prepend()
+
+
+
+
+Example:-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dynamic</title>
+    <script>
+        var products = ["../public/assets/earpods.png", "../public/assets/Laptop.png", "../public/assets/Mobile.png"];
+        function bodyload(){
+            for(var path of products){
+                var pic = document.createElement("img");
+                pic.src = path;
+                pic.width = "100";
+                pic.height = "100";
+                document.getElementById("container").appendChild(pic);
+
+
+                var option = document.createElement("option");
+                option.text = path;
+                document.querySelector("select").appendChild(option);
+
+
+                var li = document.createElement("li");
+                li.innerHTML = path;
+                document.querySelector("ol").appendChild(li);
+            }
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div id="container">
+
+    </div>
+    <select name="" id="">
+
+    </select>
+    <h2>Image Path List</h2>
+    <ol>
+
+    </ol>
+</body>
+</html>
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Lecture 58  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Reading Values from Array and Presenting:
+========================================
+
+- Creating a new Element
+            document.createElement("tagName");
+- Adding element into page
+            appendChild(elementReference);
+
+
+Example:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Arrays</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var categories = ["Electronics", "Footwear", "Fashion"];
+        function bodyload(){
+            for(var category of categories){
+                var li = document.createElement("li");
+                li.innerHTML = category;
+                document.querySelector("ol").appendChild(li);
+
+
+                var option = document.createElement("option");
+                option.text = category;
+                document.querySelector("select").appendChild(option);
+
+
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                td.innerHTML = category;
+                tr.appendChild(td);
+                document.querySelector("tbody").appendChild(tr);
+            }
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div class="container-fluid">
+        <h2 class="text-center bg-danger text-white">Arrays</h2>
+        <div class="row">
+            <div class="col">
+                <h3>Categories List</h3>
+                <ol>
+
+                </ol>
+            </div>
+            <div class="col">
+                <h3>Select Category</h3>
+                <select name="" id="">
+
+                </select>
+            </div>
+            <div class="col">
+                <h3>Categories Table</h3>
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th>Categories</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+FAQ: What type of data we can store in Array?
+Ans: Array can handle any type of data, both primitive, non primitive and functions.
+
+
+Example:
+<script>
+    var values = ["A", 1000, true, ['TV', 'Mobile'], function(){document.write('Function in Array')}];
+
+    document.write(values[3][1]);
+    values[4]();        //calling function without name.
+</script>
+
+
+
+FAQ: Why we need a function in Array?
+Ans: Array is defined with functions to handle callback mechanism.
+     Callback is a technique where funcitons will execute according to situation.
+
+Note: JavaScript ES5+ introduced Array Destruction.
+
+Ex: Without Destruction
+
+        var values = [10, "John"];
+        var sno = values[0];
+        var name = values[1];
+
+Ex: With Destruction
+
+        var values = [10, "John"];
+        var[sno, name] = values;
+        var[sno, name, salary] = values;        //salary=undefined
+        var[sno] = values;                      //sno = 10
+
+
+Example:
+<script>
+    var authorize = ["admin", function(){document.write("LogIn Success"), function(){document.write("Invalid Login")}}];
+    var [password, success, failure] = authorize;
+    var yourPassword = prompt("Enter your Password");
+
+    if(password==yourPassword){
+        success();
+    }
+    else{
+        failure();
+    }
+</script>
+
+
+Note: Function in Array must be Anonymous.
+      Anonymous functions will not have a name.
+
+      funciton(){}                  //Anonymous
+
+      funciton success(){}          //invalid in Array
+
+
+
+
+
+Adding values into Array:
+=========================
+1. push()                   //Add new values as last elements
+2. unshift()                //Add new values as first elements
+3. splice()                 //Add new values at any specific position.
+
+Syntax:
+                arrayName.push("Item1", "Item2",...);
+                arrayName.unshift("Item1", "Item2",...);
+                arrayName.splice(startIndex, deleteCount, "Item1", "Item2");
+
+Ex:
+                categories.splice(1,0,"Men's Clothing");
+
+
+
+Removing values from Array:
+=========================
+1. pop()                   //It removes and returns the last item
+2. shift()                 //It removes and returns the first item
+3. splice()                //It removes and returns the item at specific index.
+
+Syntax:
+                arrayName.pop();
+                arrayName.shift();
+                arrayName.splice(startIndex, deleteCount);
+
+Ex:
+            categories.pop()
+            categories.shift()
+            categories.splice(1,2)      //removes 2 items from index number 1
+
+
+
+
+
+Example: Dynamically adding and removing elements from Array
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Array Manipulations</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var cities = ["Delhi", "Lucknow"];
+
+        function LoadCities(){
+            document.getElementById("lstCities").innerHTML = "";
+            for(var city of cities){
+                var option = document.createElement("option");
+                option.text = city;
+                document.getElementById("lstCities").appendChild(option);
+            }
+        }
+
+        function bodyload(){
+            LoadCities();
+        }
+
+        function AddClick(){
+            var cityName = document.getElementById("txtCity").value;
+            var cityIndex = cities.indexOf(cityName);
+            if(cityIndex==-1){
+                cities.push(cityName);
+                alert(`${cityName} Added to List`);
+                LoadCities();
+                document.getElementById("txtCity").value = "";
+            }
+            else{
+                alert("City Exists - Try Another");
+            }
+        }
+
+
+        function RemoveClick(){
+            var selectedCityName = document.getElementById("lstCities").value;      //we will get the name of selected city to remove through this
+            var selectedCityIndex = cities.indexOf(selectedCityName);
+            alert(`${cities.splice(selectedCityIndex,1)} Removed`);
+            LoadCities();
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h2>Array Manipulations</h2>
+    <div class="row">
+        <div class="col-3">
+            <fieldset>
+                <legend>Add New City</legend>
+                <div class="input-group">
+                    <input type="text" id="txtCity" class="form-control">
+                    <button class="btn btn-primary" onclick="AddClick()">Add</button>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-9">
+            <h3>Cities List</h3>
+            <div>
+                <select name="" id="lstCities" class="form-select">
+
+                </select>
+                <button onclick="RemoveClick()" class="btn btn-danger">Remove City</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+Sorting Array Elements
+======================
+1. sort()                   : It sorts the items in ascending order.
+2. reverse()                : It sorts the items in reverse order of their occurance.
+
+
+Syntax:
+            arrayName.sort()
+            arrayName.reverse()
+
+Searching for Element in Array:
+1. find()
+2. filter()
+3. indexOf()
+4. lastIndexOf()
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~      Lecture 59      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Object Types
+    JSON
+
+- The concept of object into Computer Programming was Introduced in early 1960's by "Alan Kay".
+- To keep related data and logic under one reference.
+- Object store data in properties and defines logic using function.
+- Object is a Key and Value collection.
+- Keys are string type.
+- Values can be any type.
+
+Syntax:
+            let object = {
+                "key":value,
+                "key":value,
+                "key":funciton(){},
+            }
+
+- The properties of object can be accessed within object by using "this" keyword.
+- Outside object you can access with reference of object name.
+
+                        object
+                        {
+                            this.key                        // to access object properties inside object.
+                        }
+
+                        object.key;                         // to access object properties outside object.
+
+- Object acts as a reusable template with sample data and logic which you can implement and customize according to requirement.
+- Hence object is also known as "Pseudo Class".
+- If object is representing a format of data then it is known as JSON.
+                    JavaScript Object Notation.
+
+Example:
+<!-- L59 1) -->
+<script>
+    let product = {
+        "Name": "Samsung TV",
+        "Price": 45000.55,
+        "Stock": true,
+        "Qty": 0,
+        "Cities": [],
+        "Rating": {Rate:0, Count:0},
+        "Total": function(){
+            return this.Qty * this.Price;
+        },
+        "Print": function(){
+            document.write(`Name=${this.Name} <br> Price = ${this.Price} <br> Stock=${this.Stock} <br> Qunatity = ${this.Qty} <br> Total=${this.Total()}<br> Shipped to=${this.Cities.toString()}<br> Rating=${this.Rating.Rate}<br>Rate From=${this.Rating.Count} People <br>`);
+        }
+    }
+    document.write(`<h2> TV Details </h2>`);
+    product.Name = "Samsung TV";
+    product.Price = 56000;
+    product.Qty = 2;
+    product.Stock = true;
+    product.Rating.Rate = 4.5;
+    product.Rating.Count = 300;
+    product.Cities = ["Delhi", "Hyd"];
+    product.Print();
+
+
+    document.write(`<h2> Shoe Details </h2>`);
+    product.Name = "Nike Casuals";
+    product.Price = 5600;
+    product.Qty = 3;
+    product.Stock = true;
+    product.Rating.Rate = 4.5;
+    product.Rating.Count = 500;
+    product.Cities = ["Lucknow", "Ayodhya"];
+    product.Print();
+</script>
+
+
+
+
+_____________________________________________________       Array of Objects     ___________________________________________________________________________________
+- It is a collection of Objects
+
+Syntax:
+            [
+                {},
+                {}
+            ]
+
+
+Example:-
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JSON</title>
+    <script>
+        var products = [
+            {Name: "boAt NeckBand", Price: 100, Photo: "../public/assets/earpods.png"},
+            {Name: "Laptop", Price: 100, Photo: "../public/assets/Laptop.png"},
+            {Name: "Mobile", Price: 100, Photo: "../public/assets/Mobile.png"}
+        ]
+
+        function bodyload(){
+            for(var product of products){
+                var tr = document.createElement("tr");
+                var tdName = document.createElement("td");
+                var tdPrice = document.createElement("td");
+                var tdPhoto = document.createElement("td");
+
+
+                tdName.innerHTML = product.Name;
+                tdPrice.innerHTML = product.Price;
+                var img = document.createElement("img");
+                img.width = "100";
+                img.height = "100";
+
+                tdPhoto.appendChild(img);
+
+                tr.appendChild(tdName);
+                tr.appendChild(tdPrice);
+                tr.appendChild(tdPhoto);
+
+                document.querySelector("tbody").appendChild(tr);
+            }
+        }
+    </script>
+</head> 
+<body onload="bodyload()">
+    <table border="1" width="500">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Preview</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+
+Example: Card
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cards</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <script>
+        var products = [
+            {Name: "boAt NeckBand", Price: 100, Photo: "../public/assets/earpods.png"},
+            {Name: "Laptop", Price: 100, Photo: "../public/assets/Laptop.png"},
+            {Name: "Mobile", Price: 100, Photo: "../public/assets/Mobile.png"}
+        ];
+        function bodyload(){
+            for(var product of products){
+                var card = document.createElement("div");
+                card.className = "card w-25 m-2 p-2";
+                card.innerHTML=`
+                    <img src = ${product.Photo} height="200" class="card-img-top">
+
+                    <div class="card-header">
+                        <h2>${product.Name}</h2>
+                    </div>
+                    <div class="card-body">
+                        <p> &#8377; ${product.Price}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-danger w-100">
+                            <span class="bi bi-cart4"></span> Add to Cart
+                        </button>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <div id="catalog" class="d-flex flex-wrap">
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+Example:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Multi Level Iterations</title>
+    <script>
+        var data = [
+        {Category: "Electronics", Products: ["TV", "Mobile"]},
+        {Category: "Footwear", Products: ["Nike Casual", "Lee Boot"]}            
+        ];
+
+        function bodyload(){
+            for(var item of data){
+                var outerLi = document.createElement("li");
+                outerLi.innerHTML = item.Category;
+                for(var product of item.Products){
+                    var ul = document.createElement("ul");
+                    var innerLi = document.createElement("li");
+                    innerLi.innerHTML = product;
+                    ul.appendChild(innerLi);
+                    outerLi.appendChild(ul);
+                    document.querySelector("ol").appendChild(outerLi);
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <ol>
+
+    </ol>
+</body>
+</html>
+
+Task: Create a Dropdown dynamically for above data for Example like below.
+
+<select name="" id="">
+    <optgroup label="Electronics">
+        <option value="">TV</option>
+        <option value="">Mobile</option>
+    </optgroup>
+    <optgroup label="Footwear">
+        <option value="">Nike</option>
+        <option value="">Puma</option>
+    </optgroup>
+</select>
+
+
+
+------------------------------------    Consuming API through JAVASCRIPT    ------------------------------------------------
+
+
+
+------------------------------------    Ajax Calls in JavaScript with Fetch Method  ----------------------------------------
+
+- Asynchronous Javascript and HTML.
+- It allows partial post back. It can post only a specific portion of page.
+- It uses "XmlHttpRequest" object.
+- Javascript provides "fetch()" which uses asynchronous request for fetching data from API.
+- Inorder to get data from API and present the data we can use fetch method, internally fetch uses AJAX calls.
+
+Syntax:
+        fetch("url").then(function(){get data}).then(function(){convert to json});
+
+
+                            --------------- Distributed Computing --------------------
+- Two applications running on two different machines can share information between them.
+- Two applications running on two different process of same machine can share information.
+- There are various distributed computing technologies
+                            a) CORBA
+                            b) DCOM
+                            c) RMI
+                            d) EJB
+                            e) Remoting
+                            f) Web Services[API]
+- There are 3 specifications
+                            a) SOAP
+                            b) REST(REPRESENTATIONAL STATE TRANSFER)
+                            c) JSON
+
+SOAP (service oriented architecture protocol)(outdated):
+        consumer => XML Request <=> XML Response <= Provider
+
+SOAP(outdated):
+        consumer => Query Request <=> XML Response <= Provider
+                       ?name=tv
+
+JSON:
+        consumer => JSON Request <=> JSON Response <= Provider
+
+
+
+                                        "api.nasa.gov"
+                                        ==============
+
+
+
+Example: Consuming NASA API
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NASA API - Mars Photos</title>
+    <link rel="stylesheet" href="../node_modules//bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload(){
+            fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY")
+            .then(function(response){
+                return response.json();
+            }).then(function(data){
+                for(var item of data.photos){
+                    var tr = document.createElement("tr");
+                    var tdId = document.createElement("td");
+                    var tdCameraName = document.createElement("td");
+                    var tdPhoto = document.createElement("td");
+                    var tdRoverName = document.createElement("td");
+
+                    tdId.innerHTML = item.id;
+                    tdCameraName.innerHTML = item.camera.full_name;
+
+                    var img = document.createElement("img");
+                    img.src = item.img_src;
+                    img.width = 200;
+                    img.height = 200;
+                    tdPhoto.appendChild(img);
+
+                    tdRoverName.innerHTML = item.rover.name;
+
+                    tr.appendChild(tdId);
+                    tr.appendChild(tdCameraName);
+                    tr.appendChild(tdPhoto);
+                    tr.appendChild(tdRoverName);
+                    document.querySelector("tbody").appendChild(tr);
+
+
+                }
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h2>NASA Mars Rover Photos</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Photo ID</th>
+                <th>Camera Name</th>
+                <th>Photo</th>
+                <th>Rover Name</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+
+
+Example: NASA API DISPLAYED IN CARD STYLE
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NASA API - Mars Photos</title>
+    <link rel="stylesheet" href="../node_modules//bootstrap/dist/css/bootstrap.css">
+    <script>
+        function bodyload(){
+            fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY")
+            .then(function(response){
+                return response.json();
+            }).then(function(data){
+                for(var item of data.photos){
+                    var div = document.createElement("div");
+                    div.className = "card m-2 p-2";
+                    div.style.width="200px";
+                    div.innerHTML = `
+                        <img src=${item.img_src} class="card-img-top" height="200">
+                        <div class="card-header">
+                            <h2>${item.id}</h2>
+                        </div>
+                        <div class="card-body">
+                            <dl>
+                                <dt>Camera Name</dt>
+                                <dd>${item.camera.full_name}</dd>
+                                <dt>Rover Name</dt>
+                                <dd>${item.rover.name}</dd>
+                            </dl>
+                        </div>
+                    `;
+                    document.getElementById("dataContainer").appendChild(div);
+                }
+            })
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <h2>NASA Mars Rover Photos</h2>
+    <div class="d-flex flex-wrap" id="dataContainer">
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+                                        "fakestoreapi.com"
+                                        ==================
+
+Example: Shopping Cart with "fakestoreapi.com"
+
+Request                                                                     Purpose
+----------------------------------------------------------------------------------------------------------------------------------
+fakestoreapi.com/products                                                   returns all products
+fakestoreapi.com/products/1                                                 return specific id related product
+fakestoreapi.com/products/categories                                        return all categories list
+fakestoreapi.com/products/category/jewellery                                returns all products related to specific category.
+
+
+                                        Shopping.html(Lecture61Javascript.html)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shopping API</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script>
+        function GetCategories(){
+            fetch("https://fakestoreapi.com/products/categories")
+            .then(function(response){
+                return response.json();
+            }).then(function(data){
+                data.unshift("All");
+                for(var item of data){
+                    var option = document.createElement("option");
+                    option.text=item.toUpperCase();
+                    option.value = item;
+                    document.getElementById("lstCategories").appendChild(option);
+                }
+            });
+        }
+
+
+        function GetProducts(url){
+            document.getElementById("productsContainer").innerHTML="";
+            fetch(url)
+            .then(function(response){
+                return response.json();
+            }).then(function(data){
+                for(var item of data){
+                    var div = document.createElement("div");
+                    div.className = "card m-2 p-2";
+                    div.style.width = "200px";
+                    div.innerHTML = `
+                        <img src=${item.image} class="card-img-top" height="200" alt="">
+                        <div class="card-header" style="height: 200px;">
+                            <p>${item.title}</p>
+                        </div>
+                        <div class="card-body">
+                            <p>${item.price}</p>
+                            <p>Rating: ${item.rating.rate}</p>
+                            <p>Count: ${item.rating.count}</p>
+                        </div>
+                        <div class="card-footer">
+                            <button onclick="AddToCartClick(${item.id})" class="btn btn-danger w-100">
+                                <span class="bi bi-cart4"></span>
+                                Add to Cart
+                            </button>
+                        </div>
+                    `;
+                    document.getElementById("productsContainer").appendChild(div);
+                }
+            });
+        }
+
+
+        function bodyload(){
+            GetCategories();
+            GetProducts("https://fakestoreapi.com/products");
+            GetCartItemsCount();
+        }
+
+
+        function CategoryChanged(){
+            var categoryName = document.getElementById("lstCategories").value;
+            if(categoryName.toLowerCase()=='all'){
+                GetProducts("https://fakestoreapi.com/products");
+            }else{
+                GetProducts(`https://fakestoreapi.com/products/category/${categoryName}`)
+            }
+        }
+
+
+        var cartItems = [];
+        var count = 0;
+        function GetCartItemsCount(){
+            count = cartItems.length;
+            document.getElementById("cartCount").innerHTML = count;
+        }
+
+        function AddToCartClick(id){
+            fetch(`https://fakestoreapi.com/products/${id}`)
+            .then(function(response){
+                return response.json();
+            }).then(function(data){
+                cartItems.push(data);
+                alert("Item Added to Cart");
+                GetCartItemsCount();
+            });
+        }
+
+
+        function ShowCartClick(){
+            document.querySelector("tbody").innerHTML="";
+            for(var item of cartItems){
+                var tr = document.createElement("tr");
+                var tdTitle = document.createElement("td");
+                var tdPrice = document.createElement("td");
+                var tdPhoto = document.createElement("td");
+
+                tdTitle.innerHTML = item.title;
+                tdPrice.innerHTML = item.price;
+
+                var img = document.createElement("img");
+                img.src = item.image;
+                img.width = "100";
+                img.height = "100";
+
+                tdPhoto.appendChild(img);
+                tr.appendChild(tdTitle);
+                tr.appendChild(tdPrice);
+                tr.appendChild(tdPhoto);
+
+                document.querySelector("tbody").appendChild(tr);
+            }
+        }
+    </script>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <header class="bg-danger text-white text-center p-2">
+        <h1> <span></span> Shopping Online</h1>
+    </header>
+    <div class="row mt-3">
+        <div class="col-2">
+            <h4>Select a Category</h4>
+            <select name="" id="lstCategories" class="form-select" onchange="CategoryChanged()">
+
+            </select>
+        </div>
+        <div class="col-8">
+            <div id="productsContainer" class="d-flex flex-wrap overflow-auto" style="height: 500px;">
+
+            </div>
+        </div>
+        <div class="col-2">
+            <button onclick="ShowCartClick()" class="btn btn-warning" data-bs-target="#cart" data-bs-toggle="modal">
+                [<span id="cartCount"></span>]
+                <span class="bi bi-cart3"></span>
+                Your Cart Items
+            </button>
+
+            <div class="modal fade" id="cart">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Your Cart Items</h3>
+                            <button class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Preview</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+</html>
+
+
+
+
+                                        Non-Primitive Types
+- Array
+- Object
+- Map
+
+What is Map type?
+- Map is similar to object with key and value collection.   [ES5]
+
+What is the difference between Map and Object?
+
+Object                                                                  Map
+==================================================================================================================================
+1. Key and Value collection                                         Key and Value collection
+
+2. Key is only string type                                          Key can be any type
+
+    "Id": 1                                                             "Id":1      //valid
+    1:"TV" //invalid                                                    1:"TV"      //valid
+
+3. You need explicit iterators to                                   Provides implicit iterators to read
+    read keys and values.                                           key and values.
+
+4. Slow in accessing                                                Faster than object in accessing
+
+5. Size of keys is unknown                                          Allows to access size of keys
+
+
+Map Methods:
+============
+1. set()                :Adds a new value
+2. get()                :Fetch the value by using key reference
+3. keys()               :returns all keys
+4. values()             :returns all values
+5. entries()            :returns both key and values
+6. delete()             :deletes specific key
+7. clear()              :deletes all entries.
+
+Syntax:
+<script>
+    var collection = new Map();
+    collection.set("TV", "Samsung TV");
+    collection.set(1, "Lenovo Laptop");
+    document.write(collection.get("TV"));
+</script>
+
+
+Example:
+<script>
+    var collection = new Map();
+    collection.set("TV", "Samsung TV");
+    collection.set(1, "Lenovo Laptop");
+    for(var key of collection.entries()){
+        document.write(key + "<br>");
+    }
+    document.write("Total Count of Keys: " + collection.size);
+</script>
+
+
+
+                                    Lecture 62 JavaScript
+                                        Date Type
+                                        ========
+- JavaScript date values are defined by using "Date()" constructor.
+- It loads the current date and time into memory.
+
+                var now = new Date();
+
+- You can configure any specific date and time by using date value in constructor.
+
+                var now = new Date("2021-01-10");
+
+- You can access the date and time values by using following Methods
+
+                getHours()                          returns hour number in 24 hr format
+                getMinutes()                        returns minutes number 0-59
+                getSeconds()                        returns seconds number 0-99
+                getMilliSeconds()                   returns mili seconds number 0-99
+                getDate()                           returns date number [22]
+                getDay()                            returns weekday number [0=sunday]
+                getMonth()                          returns month number [0=January]
+                getFullYear()                       returns year number[2021]
+                toLocaleDateString()                returns complete date
+                toLocaleTimeString()                returns complete time
+
+Example:
+
+<script>
+    let Mfd = new Date("2021-08-15");
+    let months = ["January", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    document.write(`
+        Manufactured Date   :   ${Mfd.getDate()} <br>
+        Manufactured Month  :   ${months[Mfd.getMonth()]} <br>
+        Manufactured Weekday:   ${weekdays[Mfd.getDay()]} <br>
+        Manufactured Year   :   ${Mfd.getFullYear()} <br>
+        Manufactured Date   :   ${weekdays[Mfd.getDay()]}, ${Mfd.getDate()} - ${months[Mfd.getMonth()]} ${Mfd.getFullYear()}
+    `)
+</script>
+
+
+- JavaScript provides the following methods for setting a new date or time.
+
+            setHours()
+            setMinutes()
+            setSeconds()
+            setMilliSeconds()
+            setDate()
+            setMonth()
+            setYear()
+
+
+
+Example:
+
+<script>
+    let Mfd = new Date("2021-08-15");
+    let months = ["January", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    Mfd.setMonth(7);
+    Mfd.setDate(20);
+    document.write(`
+        Manufactured Date   :   ${Mfd.getDate()} <br>
+        Manufactured Month  :   ${months[Mfd.getMonth()]} <br>
+        Manufactured Weekday:   ${weekdays[Mfd.getDay()]} <br>
+        Manufactured Year   :   ${Mfd.getFullYear()} <br>
+        Manufactured Date   :   ${weekdays[Mfd.getDay()]}, ${Mfd.getDate()} - ${months[Mfd.getMonth()]} ${Mfd.getFullYear()}
+    `)
+</script>
+
+
+- JavaScript Timer Events:
+- SetInterval()
+- clearInterval()
+- setTimeOut()
+- clearTimeOut()
+
+setInterval()               : It is used ti perform specified task repeatedly at given interval.
+
+Syntax:
+                    setInterval(functionName, timeInterval);
+
+                        Clock           100 milli seconds = 1 sec
+                        CPU             1000 milli seconds= 1 sec
+
+Example:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Time</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        #container{
+            display: flex;
+            justify-content: space-between;
+            font-size: 25px;
+            background-color: red;
+            color: white;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        function Clock(){
+            var now = new Date();
+            document.getElementById("time").innerHTML = now.toLocaleTimeString();
+        }
+        function bodyload(){
+            setInterval(Clock, 1000);
+            var icon = document.getElementById("icon");
+            var msg = document.getElementById("msg");
+            var hrs = now.getHours();
+            if(hrs>=0 && hrs<=12){
+                msg.innerHTML = "Good Morning";
+                icon.className = "bi bi-brightness-alt-high";
+            }else if(hrs>=13 && hrs<=17){
+                msg.innerHTML = "Good Afternoon";
+                icon.className = "bi bi-brightness-high";
+            }else{
+                msg.innerHTML = "Good Evening";
+                icon.className = "bi bi-cloud-sun-fill";
+            }
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <div id="container">
+        <h2>Amazon Shopping</h2>
+        <span>
+            <span id="icon"></span>  <span id="msg"></span>
+        </span>
+        <span id="time"></span>
+    </div>
+</body>
+</html>
+
+
+Note: You can access date from HTML date picker and convert into Date Format by using "Date()".
+
+Syntax:
+            var departure = new Date(document.getElementById("txtDate").value);
+
+Example: Dynamic Date
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Date Demo</title>
+    <script>
+        function DateChanged(){
+            var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var departure = new Date(document.getElementById("txtDate").value);
+            document.querySelector("h2").innerHTML = `Departure Date: ${weekdays[departure.getDay()]} ${departure.toLocaleDateString()}`;
+        }
+    </script>
+</head>
+<body>
+    Departure Date:
+    <input type="date" onchange="DateChanged()" id="txtDate">
+    <br>
+    <h2></h2>
+</body>
+</html>
+
+
+
+
+                                            Regular Expression Type
+                                            =======================
+- Regular Expression is a group of meta characters and quantifiers enclosed in "//".
+
+Syntax:
+                let regExp = /\+91[0-9]{10}/;
+
+- Regular Expression is verified by using "match()" method.
+
+Syntax:
+            let mobile = "+919876543210";
+
+            if(mobile.match(regExp)){
+
+            }
+
+
+                                            Math Object
+                                            ===========
+- It provides set of properties and methods to handle mathematical operations.
+
+            Math.PI
+            Math.sqrt()
+            Math.sin()
+            Math.tan()
+            Math.pow()
+            Math.round()
+            Math.random() etc...
+
+
+
+Example:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LogIn</title>
+    <link rel="stylesheet" href="../node_modules//bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        dd,dt{
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function GenerateCode(){
+            var a = Math.random()*10;
+            var b = Math.random()*10;
+            var c = Math.random()*10;
+            var d = Math.random()*10;
+            var e = Math.random()*10;
+            var f = Math.random()*10;
+
+            return `${Math.round(a)} ${Math.round(b)} ${Math.round(c)} ${Math.round(d)} ${Math.round(e)} ${Math.round(f)}`;
+        }
+
+        function bodyload(){
+            document.getElementById("Code").innerHTML = GenerateCode();
+        }
+
+        function NewCode(){
+            bodyload();
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <fieldset>
+        <legend>User LogIn</legend>
+        <dl>
+            <dt>User Name</dt>
+            <dd><input type="text"></dd>
+            <dt>Password</dt>
+            <dd><input type="password"></dd>
+            <dt>Verify Code <button onclick="NewCode()" class="btn"><span class="bi bi-arrow-clockwise"></span></button></dt>
+            <dd><span id="code"></span></dd>
+        </dl>
+        <button>LogIn</button>
+    </fieldset>
+</body>
+</html>
+
+
+
+                                JavaScript Operators
+
+- Operator is an object that evaluates a value.
+- Operator comprises of operands that store data.
+
+                    x+y             x and y are operands
+                                    + is operator.
+
+- Based on how many operands an operator can handle, the operators are classified into following types.
+
+                            a) Unary Operator
+                                    x++, --y
+                            b) Binary Operator
+                                    x+y
+                                    x*y
+                            c) Ternary Operator
+                                    ?:
+                                (condition)?if_true:if_false
+
+- Operators are again classified into various groups based on the type of value they return.
+    a) Arithmetic operators                 :number
+    b) Conditional operators                :boolean
+    c) Logical Operators                    :boolean
+    d) Bitwise Operators                    :Binary Value
+    e) Special Operators                    : vary in functionality
+
+
+Arithmetic Operators:
++       Addition
+-       Subtraction
+*       Multiplication
+/       Division
+%       Modulus
+**      Exponent
+++      Increment
+--      Decrement
+
+Addition Operator: It return the sum of given numbers.
+
+                    number + number = number
+                    number + string = string
+                    number + boolean = number
+                    string + string = string
+                    string + number = string
+                    string + boolean = string
+                    boolean + string = string
+                    boolean + number = number
+                    boolean + boolean = number
+
+Note:   Any operation with undefined will be "NaN" except string.
+        Any operation with null will return number except string.
+
+                    
+
+Subtraction Operator: It returns the difference value.
+
+                    string - number                 = NaN
+                    string[number] - number         = number
+                    number - boolean                = number
+                    boolean - boolean               = number
+
+                    all other operations            = NaN
+
+Note: "-" operator uses implicit parsing, but only for numeric representation in string format.
+
+
+Multiplication Operator: It returns the product of given numbers.
+
+                    number * number                 = number
+                    number * boolean                = number
+
+                    all other operations            = NaN
+
+
+Division : It returns the quotient value.
+
+                    number/number                   = number
+                    number/boolean                  = number [true]
+
+
+Modulus : It returns remainder value.
+
+                    number % number                 = number
+                    number % boolean                = number [true]
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Modulus</title>
+    <script>
+        function SubmitClick(){
+            var n = document.getElementById("txtEven").value;
+            var msg = document.getElementById("msg");
+            if(parseInt(n)%2 == 0){
+                msg.innerHTML = "Verified...";
+            }else{
+                msg.innerHTML = "Not an Even Number";
+            }
+        }
+    </script>
+</head>
+<body>
+    Enter Even Number:
+    <input type="text" id="txtEven">
+    <button onclick="SubmitClick()">Submit</button>
+    <br>
+    <div id="msg"></div>
+</body>
+</html>
+
+
+
+- Exponent Operator [ES5]: It returns the value of base raised to power.
+
+        2**3        = 8
+
+Increment and Decrement Operators:  They increase or decrease the current value with 1 and store the returned value.
+
+        x++         x = x + 1;
+        x--         x = x - 1;
+
+Post Increment: It assigns and then increments.
+        x++
+        x = 10;
+        y = x++;        // y will be 10 but x will become 11
+
+Post Decrement: It assigns and then decrements.
+        x--
+        x = 10;
+        y = x--;        // x = 9, y = 10
+
+Pre Increment: It increments and then assign
+Pre Decrement: It decrements and then assign
+
+        ++x
+        x=10;
+        y = ++x;        x = 11. y = 11
+        y = --x;        x = 9, y = 9.
