@@ -1,0 +1,239 @@
+                                                Regular Expressions
+-Regular Expression is used to validate the format of input value.
+-Regular Expression is built by using.
+        a) Meta Characters
+        b) Quantifiers
+
+Meta Characters
+? -->               Zero or One Occurance of Character.
+                    colou?r it will allow only either colour or color (either u will come or u will not come)
+
+Syntax:
+    <input type="text" pattern="colou?r" name="test">
+        it will allow only color or colour
+        color       -       valid
+        colour      -       valid
+
++ -->               One or more Occurance of Character.
+                    pattern="colou+r"
+                    color   -invalid
+                    colour  -valid
+                    colouur -valid
+                    colouuur -valid
+
+* -->               Zero or more Occurance
+                    pattern="colou*r"
+                    color   -valid
+                    colour  -valid
+                    colouur -valid
+                    colouuur -valid
+
+
+. [dot]-->          Any single char, every specific character occurance is mandatory
+                    Indicates only one Character. It indicates exact characters
+                    cat bat rat mat  ====> regular expression is .at
+                    boy toy dos      ====> regular expression is .o.
+                    .?.at            ====> meaning of this regular expression is that the first character (the character before '?') is optional
+                    pattern="..at"
+
+                    cat         -invalid
+                    chat        -valid
+
+
+| [pipe]-->         Logical OR allows multiple characters or words
+
+                    pattern="red|green|blue"
+
+                    red     -valid
+                    green   -valid
+                    blue    -valid
+
+                    patter="c|mat" 
+
+                    cat     -valid
+                    mat     -valid
+
+
+\      -->          It is used as escape sequence character
+
+
+d      -->          It specifies only numeric value
+                    
+                    pattern="d" if we specify like this in pattern it will only allow single character 'd' only but we want to specify it as 
+                    numeric value so we have to use 
+                    pattern="\d"            any single digit numeric value type
+                    Remember \d will only allow to enter a single digit 
+
+
+
+                    pattern="\d"
+
+                    c       -invalid
+                    0       -valid
+                    1       -valid
+                    10      -invalid
+
+
+
+                    pattern="\d\d"  it will allow any two digit number
+
+                    1       -invalid
+                    10      -valid
+
+
+
+                    pattern="\d\d\d"  it will allow any three digit number
+
+                    1       -invalid
+                    10      -invalid
+                    100     -valid
+
+
+                    \d          -any single digit numeric value type
+                    \d\d        -exactly 2 digit numeric value
+                    \d\d\d      -exactly 3 digit numeric value
+
+
+
+D       --->        It specifies non-numeric value means alphabet and any special characters but not numbers
+
+                    pattern="\D"
+
+                    a       -valid
+                    9       -invalid
+                    $       -valid
+
+
+
+w       --->        alpha numeric with underscore any other special character not allowed
+                    [a-z, A-Z, 0-9, _]
+
+                    pattern="\w"
+
+                    c       -valid
+                    D       -valid
+                    7       -valid
+                    $       -invalid
+                    _       -valid
+
+
+
+W       --->        Non-Word any special character other than
+                    a-z, A-Z, 0-9, _
+
+                    pattern="\W"
+
+                    c       -invalid
+                    D       -invalid
+                    5       -invalid
+                    _       -invalid
+                    @       -valid
+                    $       -valid
+                    @@      -invalid
+
+
+                    pattern="\W\W"
+
+                    c       -invalid
+                    D       -invalid
+                    5       -invalid
+                    _       -invalid
+                    @       -invalid
+                    $       -invalid
+                    @@      -valid
+
+
+
+s       --->        It refers single blank space
+                    [space or tab]
+                    Space is mandatory
+
+                    pattern="\d\s\w"
+
+                    4A      -invalid
+                    4 A     -valid
+                    4 6     -valid
+
+
+
+i       --->        ignore case
+
+
+
+
+[a-z]   --->        Only lower case alphabet
+
+[A-Z]   --->        Only uppercase alphabet
+
+[a-zA-Z]    --->        Both upper and lower case.
+
+[a-Z]       --->        Both upper and lower case.
+
+[a,d,s]     --->        Only specified character
+
+[a-d, m-s]  --->        Only character in specified range allowed
+
+
+[^a,d,s]    --->        excluding these chars all other characters are allowed.
+
+[^a-d, m-s] --->        excluding these specified range of characters all others are allowed
+
+[0-9]       --->        Only numeric [similar to \d]
+
+[a-zA-Z0-9]        --->        Alpha Numeric
+
+[a-zA-Z0-9_]       --->        Similar to \w   (lower case w)
+
+[a-zA-Z0-9_]       --->        Similar to \W   (upper case W)
+
+
+
+\^                 --->         Starts with
+
+\$                 --->         Ends with
+
+()                 --->         Union of characters
+
+
+
+Quantifiers
+
+{n}                 --->        exactly specified number of chars
+                                {4}     exactly 4
+
+
+{n,m}               --->        minimum -n and maximum -m
+                                {4,10} between 4 to 10
+
+
+{n,}                --->        minimum n maximum any
+                                {4,}    minimum 4 and maximum any
+
+
+Syntax:
+    <input type="text" pattern="\d{10}">     meaning exactly 10 digit number
+
+    <input type="text" pattern="\d{2}-\d{2}-\d{4}">
+    Output:-        32-00-4509, 12-00-1234 or similar like that.
+
+
+
+Query : 10 digits Mobile number starting with +91
+
+    (?=.*[A-Z])     --->    Meaning atleast one uppercase
+    (?=.*[0-9])     --->    Meaning atleast one number
+    Explanation
+
+    ?       = zero or one
+    ?=.     = atleast 1
+    *       = many
+
+
+Query 6: Password 4 to 15 characters alpha numeric with atleast one special character
+    pattern="(?=.*\W)\w{4,15}"  this is wrong because we first have to allow the special character also but \w is not allowing it
+    To allow special character also first write 4-15 with alphanumeric and special character then add the restriction.
+    pattern="[\w\W]{4,15}"          this will allow any alphanumeric character along with any special character
+    pattern="(?=.*|W)[\w\W]{4,15}"  this will allow any alphanumeric character along with any special character with atleast one special character
+    
+
+
